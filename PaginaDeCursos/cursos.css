@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat:wght@400;600&display=swap');
+
+:root {
+    --cor-primaria: #2C3639;
+    --cor-secundaria: #DCD7C9;
+    --cor-terciaria: #A27B5C;
+    --cor-hover: #3F4E4f;
+    --cor-botao-hover: #ac7f5d;
+    --cor-cards: #DCD7C9;
+
+    --fonte-primaria:  'Krona One', sans-serif;
+    --fonte-secundaria: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    background-color: var(--cor-primaria);
+}
+
+header {
+  display: flex;
+    gap: 80px;
+    background-color: var(--cor-primaria);
+    color: var(--cor-secundaria);
+    padding: 30px 0px 30px 130px;
+    text-align: center;
+    font-family: var(--fonte-secundaria);
+}
+
+header h1 {
+  align-self: center;
+    margin: 0;
+    font-size: 1rem;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: var(--cor-primaria);
+    padding: 10px 0;
+    font-family: var(--fonte-secundaria);
+}
+
+nav a {
+    color: var(--cor-terciaria);
+    padding: 14px 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+nav a:hover {
+  background-color: var(--cor-hover);
+  transform: scale(1.1);
+  transition: all 0.5s;
+}
+
+
+.courses-container {
+  width: 80%;
+  margin: 50px auto;
+  text-align: center;
+}
+.courses-container h2 {
+  color: var(--cor-secundaria);
+}
+
+.course-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.course-card {
+  width: 30%;
+  padding: 20px;
+  margin: 15px;
+  background-color: var(--cor-primaria);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: left;
+}
+
+.course-card h3 {
+  color: var(--cor-terciaria);
+  margin-bottom: 10px;
+}
+
+.course-card p {
+  color: var(--cor-secundaria);
+  margin-bottom: 15px;
+}
+
+.course-card button {
+  padding: 10px;
+  background-color: var(--cor-terciaria);
+  color: var(--cor-secundaria);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.course-card button:hover {
+  background-color: var(--cor-botao-hover);
+  transform: scale(1.07);
+  transition: all 0.5s;
+}
+
+footer {
+  text-align: center;
+  padding: 20px 0 20px 0;
+  background-color: var(--cor-terciaria);
+  color: white;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  font-family: var(--fonte-secundaria);
+}
