@@ -16,6 +16,7 @@
     margin: 0;
     padding: 0;
     background-color: var(--cor-primaria);
+    font-family: var(--fonte-secundaria);
 }
 
 header {
@@ -29,6 +30,7 @@ header {
 }
 
 header h1 {
+  font-family: var(--fonte-primaria);
   align-self: center;
     margin: 0;
     font-size: 1rem;
@@ -83,12 +85,14 @@ nav a:hover {
 }
 
 .course-card h3 {
+  font-family: var(--fonte-primaria);
   color: var(--cor-terciaria);
   margin-bottom: 10px;
 }
 
 .course-card p {
   color: var(--cor-secundaria);
+  font-family: var(--fonte-secundaria);
   margin-bottom: 15px;
 }
 
@@ -116,4 +120,8 @@ footer {
   position: relative;
   bottom: 0;
   font-family: var(--fonte-secundaria);
+}
+
+footer p {
+  background-color: var(--cor-terciaria);
 }

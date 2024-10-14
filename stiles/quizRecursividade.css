@@ -83,7 +83,8 @@ nav a:hover {
 }
 
 .quiz-option {
-  padding: 10px 20px;
+  padding: 10px 10px;
+  margin: 10px;
   background-color: var(--cor-terciaria);
   color: white;
   border: none;

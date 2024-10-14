@@ -15,6 +15,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: var(--fonte-secundaria);
 }
 
 body {
@@ -89,6 +90,7 @@ main {
 }
 
 .quiz-card h2 {
+    font-family: var(--fonte-primaria);
     color: var(--cor-terciaria);
     margin-bottom: 10px;
 }
