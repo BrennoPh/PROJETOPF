@@ -6,6 +6,7 @@
     --cor-terciaria: #A27B5C;
     --cor-hover: #3F4E4f;
     --cor-botao-hover: #ac7f5d;
+    --cor-codeblock:  #363f42;
 
     --fonte-primaria:  'Krona One', sans-serif;
     --fonte-secundaria: 'Montserrat', sans-serif;
@@ -72,14 +73,14 @@ nav a:hover {
 
 .question {
   color: var(--cor-secundaria);
-  padding: 30px 0 20px 0;
+  padding: 30px 0 10px 0;
 }
 
 
 .quiz-options {
   display: flex;
   justify-content: space-around;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .quiz-option {
@@ -101,4 +102,27 @@ nav a:hover {
 
 .question {
   margin-top: 10px;
+}
+
+.codeblock {
+  display: flex;
+  padding: 20px 0 0 0;
+  overflow: visible;
+  overflow-x: auto;
+  font-family: 'Courier New', Courier, monospace;
+  white-space: pre;
+  text-align: left;
+  justify-content:flex-start;
+}
+
+.codeblock pre {
+  width: 100%;
+  background-color: var(--cor-codeblock);
+}
+
+.codeblock code {
+  color: var(--cor-secundaria);
+  background-color: var(--cor-codeblock);
+  counter-reset: line;
+  white-space: pre-wrap;
 }
