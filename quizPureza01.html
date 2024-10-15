@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Plataforma EdTech</title>
+    <link rel="stylesheet" href="stiles/quizRecursividade.css">
+</head>
+<!-- Cabeçalho e Título -->
+<header>
+    <h1>EdTech</h1>
+    <nav>
+      <!-- Barra de Navegação -->
+      <a href="./index.html">Home</a> 
+      <a href="./login.html">Login</a>
+      <a href="./cursos.html">Cursos</a>
+      <a href="./PgPerguntas.html">Quizzes</a>
+      <a href="./painel.html">Painel de Progresso</a>
+  </nav>
+</header>
+<body>
+    <div class="quiz-container">
+        <h2>Quiz de Pureza</h2>
+       <!-- Questão 1 -->
+    <div class="question">
+        1- O que caracteriza uma função pura?
+    </div>
+    <div class="quiz-options">
+        <button class="quiz-option">Ela sempre retorna o mesmo resultado para os mesmos argumentos.</button>
+        <button class="quiz-option">Ela modifica o estado de variáveis globais.</button>
+        <button class="quiz-option">Ela depende de variáveis externas.</button>
+        <button class="quiz-option">Ela sempre executa um loop.</button>
+    </div>
+
+    <!-- Questão 2 -->
+    <div class="question">
+        2- Qual é o resultado da seguinte função pura quando chamada com o argumento 4?
+        <div class="codeblock">
+        <pre><code>
+        1. const dobro = (x) => {
+        2. return x * 2
+        3. }
+        </code></pre>
+        </div>
+    </div>
+    <div class="quiz-options">
+        <button class="quiz-option">2</button>
+        <button class="quiz-option">4</button>
+        <button class="quiz-option">8</button>
+        <button class="quiz-option">10</button>
+    </div>
+
+    <!-- Questão 3 -->
+    <div class="question">
+        3- Assinale a alternativa que NÃO é uma característica de funções puras:
+    </div>
+    <div class="quiz-options">
+        <button class="quiz-option">Imutabilidade de dados.</button>
+        <button class="quiz-option">Dependência de estado externo.</button>
+        <button class="quiz-option">Consistência em resultados.</button>
+        <button class="quiz-option">Reusabilidade.</button>
+    </div>
+
+    <!-- Questão 4 -->
+    <div class="question">
+        4- Qual dos seguintes exemplos representa uma violação do conceito de função pura?
+    </div>
+    <div class="quiz-options">
+        <button class="quiz-option">const quadrado = (x) => { return x * x }</button>
+        <button class="quiz-option">const adicionaTempo = (data, dias) => { return data + timedelta(days=dias) }</button>
+        <button class="quiz-option">const multiplica = (x, y) => { return x * y }</button>
+        <button class="quiz-option">const geraId = () => { return random.randint(1, 100) }</button>
+    </div>
+
+    <!-- Questão 5 -->
+    <div class="question">
+        5- Assinale a alternativa que completa corretamente o cálculo do volume de uma esfera, dada pela fórmula V= 4/3 x r³<br>
+        <code>function v(r, ___) { return(4/3 * pi * ___) }</code>
+    </div>
+    <div class="quiz-options">
+        <button class="quiz-option">3.14, r**3</button>
+        <button class="quiz-option">pi=3.14, r*3</button>
+        <button class="quiz-option">pi=3.14, r**3</button>
+        <button class="quiz-option">3.14, r*3</button>
+    </div>
+
+    <!-- Questão 6 -->
+    <div class="question">
+        6- Funções puras facilitam o uso de qual técnica?
+    </div>
+    <div class="quiz-options">
+        <button class="quiz-option">Programação orientada a objetos.</button>
+        <button class="quiz-option">Testes unitários.</button>
+        <button class="quiz-option">Programação assíncrona.</button>
+        <button class="quiz-option">Manipulação de estado.</button>
+    </div>
+
+    <!-- Questão 7 -->
+    <div class="question">
+        7- Assinale a alternativa que representa uma função pura:
+    </div>
+    <div class="quiz-options">
+        <button class="quiz-option">const soma = (x, y) => { return x + y + z } (onde z é uma variável global)</button>
+        <button class="quiz-option">const soma = (x, y) => { return x + y }</button>
+        <button class="quiz-option">const incrementa = (x) => { x + y + 1 } (onde y é uma variável global)</button>
+    </div>
+
+    <!-- Questão 8 -->
+    <div class="question">
+        8- Qual das seguintes operações é considerada um efeito colateral?
+    </div>
+    <div class="quiz-options">
+        <button class="quiz-option">Retornar o dobro de um número.</button>
+        <button class="quiz-option">Modificar uma variável global.</button>
+        <button class="quiz-option">Somar dois números.</button>
+        <button class="quiz-option">Calcular a raiz quadrada de um número.</button>
+    </div>
+
+    <!-- Questão 9 -->
+    <div class="question">
+        9- Qual das alternativas abaixo é um benefício de usar funções puras?
+    </div>
+    <div class="quiz-options">
+        <button class="quiz-option">Aumento da complexidade do código.</button>
+        <button class="quiz-option">Facilidade para testar e depurar.</button>
+        <button class="quiz-option">Menor legibilidade.</button>
+        <button class="quiz-option">Dependência de estado global.</button>
+    </div>
+
+    <!-- Questão 10 -->
+    <div class="question">
+        10- Assinale o comportamento da função abaixo:<br>
+        <code>const dividir = (x,y) => { if (y == 0) return "ERRO"; return x/y }</code>
+    </div>
+    <div class="quiz-options">
+        <button class="quiz-option">Retorna erro</button>
+        <button class="quiz-option">Multiplica x por y</button>
+        <button class="quiz-option">Divide x por y</button>
+        <button class="quiz-option">Eleva x a y</button>
+    </div>
+    </div>
+    <script src="scripts/quiz.js"></script>
+</body>
+</html>

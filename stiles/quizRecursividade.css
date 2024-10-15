@@ -16,6 +16,7 @@
     margin: 0;
     padding: 0;
     background-color: var(--cor-primaria);
+    font-family: var(--fonte-secundaria);
 }
 
 header {
@@ -56,52 +57,57 @@ nav a:hover {
   transition: all 0.5s;
 }
 
+
+/*body*/
+
+/* Contêiner do quiz */
 .quiz-container {
-  width: 50%;
-  margin: 50px auto;
-  padding: 20px;
-  background-color: var(--cor-primaria);
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  border-radius: 10px;
+  max-width: 800px; /* Largura máxima do contêiner */
+  margin: 50px auto; /* Centraliza o contêiner */
+  padding: 20px; /* Espaçamento interno */
+  border-radius: 10px; /* Cantos arredondados */
+  background-color: var(--cor-primaria); /* Cor de fundo do contêiner */
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2); /* Sombra */
 }
 
-.quiz-container h2 {
-  color: var(--cor-secundaria);
-  margin-bottom: 30px;
-}
-
+/* Estilo para a pergunta */
 .question {
   color: var(--cor-secundaria);
-  padding: 30px 0 10px 0;
+  font-family: var(--fonte-primaria);
+  font-size: 2.5rem; /* Tamanho da fonte da pergunta */
+  margin-bottom: 20px; /* Margem abaixo da pergunta */
 }
 
-
-.quiz-options {
+/* Estilo para as opções */
+.option {
   display: flex;
-  justify-content: space-around;
-  margin-top: 10px;
+  flex-direction: column;
+  margin: 10px 0; /* Margem acima e abaixo das opções */
 }
 
-.quiz-option {
-  padding: 10px 10px;
-  margin: 10px;
-  background-color: var(--cor-terciaria);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+/* Estilo dos botões */
+button {
+  background-color: var(--cor-terciaria); /* Cor de fundo do botão */
+  color: var(--cor-secundaria); /* Cor do texto do botão */
+  border-radius: 5px; /* Cantos arredondados */
+  border: 0;
+  padding: 10px 20px; /* Espaçamento interno */
+  margin: 8px;
+  cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+  font-size: 1rem; /* Tamanho da fonte do botão */
+  transition: background-color 0.3s; /* Transição suave para a cor de fundo */
 }
 
-.quiz-option:hover {
-  background-color: var(--cor-botao-hover);
-  transform: scale(1.07);
-  transition: all 0.5s;
+/* Estilo para o botão ao passar o mouse */
+button:hover {
+  background-color: var(--cor-botao-hover); /* Cor de fundo ao passar o mouse */
 }
 
-
-.question {
-  margin-top: 10px;
+/* Estilo para o nível da pergunta */
+.nivel {
+  font-size: 1rem; /* Tamanho da fonte do nível */
+  margin-bottom: 10px; /* Margem abaixo do nível */
+  color: var(--cor-secundaria); /* Cor do texto do nível */
 }
 
 .codeblock {
