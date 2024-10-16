@@ -466,5 +466,3 @@ const perguntasAgrupadas = agruparPorNivel(perguntas);
 
 // Inicia o quiz exibindo a primeira pergunta
 renderizarPergunta(0, historicoRespostas, nivelAtual, perguntasAgrupadas);
-
-
