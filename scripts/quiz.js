@@ -207,7 +207,7 @@ const perguntas = [
         '15', 
         '20'
       ],
-      respostaCorreta: 2
+      respostaCorreta: 1
     },
     {
       nivel: 2,
@@ -230,7 +230,7 @@ const perguntas = [
         'Passar total como argumento e retornar a soma.', 
         'Utilizar uma variável global para armazenamento.'
       ],
-      respostaCorreta: 1
+      respostaCorreta: 2
     },
     {
       nivel: 3,
@@ -357,18 +357,18 @@ const perguntas = [
 // Função para checar se a resposta está correta
 const checarResposta = (indiceResposta, pergunta) => {
   console.log("Índice da resposta correta:", pergunta.respostaCorreta); // Verificação do índice correto
-  console.log("Índice da resposta escolhida:", indiceRespostaEscolhida); // Verificação do índice escolhido
+  console.log("Índice da resposta escolhida:", indiceResposta); // Verificação do índice escolhido
+  console.log("Agrupando perguntas para o nível:", nivelAtual); // Verificação do nível
   return indiceResposta === pergunta.respostaCorreta;
 };
 
-// Função para calcular o nível com base nos acertos
 const calcularNivel = (historicoRespostas) => {
   const acertos = historicoRespostas.reduce((total, resposta) => 
     resposta === true ? total + 1 : total, 0);
     
   const novoNivel = Math.min(1 + Math.floor(acertos / 5), 3); // Aumenta o nível a cada 5 acertos, até o nível 3
-  return novoNivel;
-};
+   return novoNivel;
+ };
 
 // Função para agrupar perguntas por nível
 const agruparPorNivel = (perguntas) => {
@@ -469,3 +469,6 @@ const perguntasAgrupadas = agruparPorNivel(perguntas);
 
 // Inicia o quiz exibindo a primeira pergunta
 renderizarPergunta(0, historicoRespostas, nivelAtual, perguntasAgrupadas);
+
+const perguntasNivel2 = agruparPorNivel(perguntas, 2); // Passando nível 2, por exemplo
+console.log(perguntasNivel2)
