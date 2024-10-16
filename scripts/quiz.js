@@ -356,6 +356,8 @@ const perguntas = [
 
 // Função para checar se a resposta está correta
 const checarResposta = (indiceResposta, pergunta) => {
+  console.log("Índice da resposta correta:", pergunta.respostaCorreta); // Verificação do índice correto
+  console.log("Índice da resposta escolhida:", indiceRespostaEscolhida); // Verificação do índice escolhido
   return indiceResposta === pergunta.respostaCorreta;
 };
 
@@ -370,6 +372,7 @@ const calcularNivel = (historicoRespostas) => {
 
 // Função para agrupar perguntas por nível
 const agruparPorNivel = (perguntas) => {
+  console.log("Agrupando perguntas para o nível:", nivelAtual); // Verificação do nível
   const agregar = (perguntas, niveis = {}) => {
     if (perguntas.length === 0) {
       return niveis;
