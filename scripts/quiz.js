@@ -132,10 +132,10 @@ const perguntas = [
       tipo: 'pureza',
       pergunta: 'Em uma linguagem funcional, como a imutabilidade se relaciona com funções puras?',
       opcoes: [
-        'Funções puras não podem trabalhar com dados mutáveis.', 
-        'A imutabilidade não afeta a pureza das funções.', 
-        'Funções puras exigem dados mutáveis para serem eficientes.',  
-        'A imutabilidade facilita a criação de funções puras.',
+        'Funções puras não podem trabalhar com dados mutáveis.',
+        'A imutabilidade não afeta a pureza das funções.',
+        'Funções puras exigem dados mutáveis para serem eficientes.', 
+        'A imutabilidade facilita a criação de funções puras.'
       ],
       respostaCorreta: 3
     },
