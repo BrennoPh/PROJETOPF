@@ -352,12 +352,30 @@ const perguntas = [
     } 
 ];
 
-// Função para checar se a resposta está correta
-const checarResposta = (indiceResposta, pergunta) => {
-  console.log("Índice da resposta correta:", pergunta.respostaCorreta); // Verificação do índice correto
+// Nível inicial do usuário
+const nivelAtual = 1;
+
+const checarResposta = (indiceResposta, perguntaAtual) => {
+  // Verifica se a pergunta atual existe
+  if (!perguntaAtual) {
+    console.error("Pergunta atual não definida.");
+    return false;
+  }
+
+  const respostaCorreta = perguntaAtual.respostaCorreta;
+
+  if (respostaCorreta === undefined) {
+    console.error("Resposta correta não definida.");
+    return false;
+  }
+
+  console.log("Índice da resposta correta:", perguntaAtual.respostaCorreta); // Verificação do índice correto
   console.log("Índice da resposta escolhida:", indiceResposta); // Verificação do índice escolhido
   console.log("Agrupando perguntas para o nível:", nivelAtual); // Verificação do nível
-  return indiceResposta === pergunta.respostaCorreta;
+
+  return indiceResposta === respostaCorreta;
+
+
 };
 
 const calcularNivel = (historicoRespostas) => {
@@ -403,7 +421,7 @@ const renderizarPergunta = (indice, historicoRespostas, nivelAtual, perguntasAgr
       opcoesDiv.innerHTML = ''; // Limpa as opções anteriores
 
       // Renderiza as opções de resposta
-      renderizarOpcoes(perguntaAtual.opcoes, indice, historicoRespostas, nivelAtual, perguntasAgrupadas);
+      renderizarOpcoes(perguntaAtual, indice, historicoRespostas, nivelAtual, perguntasAgrupadas);
     } else {
       // Exibe a pontuação final
       document.getElementById('pergunta').innerText = 'Quiz finalizado.';
@@ -415,23 +433,23 @@ const renderizarPergunta = (indice, historicoRespostas, nivelAtual, perguntasAgr
 };
 
 // Função para renderizar opções de forma recursiva
-const renderizarOpcoes = (opcoes, perguntaIndice, historicoRespostas, nivelAtual, perguntasAgrupadas) => {
+const renderizarOpcoes = (perguntaAtual, perguntaIndice, historicoRespostas, nivelAtual, perguntasAgrupadas) => {
   const opcoesDiv = document.getElementById('opcoes');
 
   const renderizarRecursivo = (index) => {
-    if (index < opcoes.length) {
+    if (index < perguntaAtual.opcoes.length) {
       const botaoOpcao = document.createElement('button');
-      botaoOpcao.innerText = opcoes[index];
+      botaoOpcao.innerText = perguntaAtual.opcoes[index];
       botaoOpcao.addEventListener('click', () => {
-        const respostaCorreta = perguntas[perguntaIndice].respostaCorreta;
-        const resposta = checarResposta(index, perguntas[perguntaIndice]);
+        // Passa a perguntaAtual diretamente para checarResposta
+        const resposta = checarResposta(index, perguntaAtual);
         
         historicoRespostas.push(resposta); // Adiciona a resposta ao histórico
 
         if (resposta) {
           alert('Resposta correta!');
         } else {
-          alert(`Resposta errada. A correta era: ${opcoes[respostaCorreta]}`);
+          alert(`Resposta errada. A correta era: ${perguntaAtual.opcoes[perguntaAtual.respostaCorreta]}`);
         }
 
         // Atualiza o nível do usuário baseado no desempenho
@@ -442,6 +460,7 @@ const renderizarOpcoes = (opcoes, perguntaIndice, historicoRespostas, nivelAtual
 
         // Se o nível mudou, reinicia o índice para 0 do novo nível
         if (novoNivel !== nivelAtual) {
+          nivelAtual = novoNivel;
           renderizarPergunta(0, historicoRespostas, novoNivel, perguntasAgrupadas);
         } else {
           // Se o nível não mudou, continua para a próxima pergunta
@@ -458,9 +477,6 @@ const renderizarOpcoes = (opcoes, perguntaIndice, historicoRespostas, nivelAtual
 
 // Array para armazenar o histórico de respostas
 const historicoRespostas = [];
-
-// Nível inicial do usuário
-const nivelAtual = 1;
 
 // Agrupa as perguntas por nível
 const perguntasAgrupadas = agruparPorNivel(perguntas);
