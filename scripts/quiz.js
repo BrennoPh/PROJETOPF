@@ -1,5 +1,3 @@
-
-
 const perguntas = [
   { 
     nivel: 1,
