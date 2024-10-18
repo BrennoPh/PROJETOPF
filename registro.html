@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Plataforma EdTech</title>
+    <link rel="stylesheet" href="stiles/login.css">
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+        import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
+        import { getFirestore, setDoc, doc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+        
+        const firebaseConfig = {
+      apiKey: "AIzaSyB20oXuHGDHTEIl6PjVSiD9vGiOwDsaJ3s",
+      authDomain: "plataforma-edtech-b4f7d.firebaseapp.com",
+      projectId: "plataforma-edtech-b4f7d",
+      storageBucket: "plataforma-edtech-b4f7d.appspot.com",
+      messagingSenderId: "447721692450",
+      appId: "1:447721692450:web:9c567f7b645dab7d01d97b",
+      measurementId: "G-CHWEEQGZCR"
+};
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const registrarUsuario = async (email, senha, nome) => {
+            try {
+                const usuario = await createUserWithEmailAndPassword(auth, email, senha);
+                console.log("Usuário registrado:", usuario);
+                const usuarioId = usuario.user.uid;
+                const dados = { nome: nome, pontuacao: 0 }; // Inicialize a pontuação como 0 ou o que for apropriado
+                await setDoc(doc(db, "usuarios", usuarioId), dados);
+                console.log("Dados do usuário armazenados:", dados);
+                alert("Usuário registrado com sucesso!");
+                window.location.href = "./login.html"; // Redireciona para a página de login
+            } catch (error) {
+                console.error("Erro ao registrar:", error);
+                alert("Erro ao registrar: " + error.message);
+            }
+        };
+
+        const registroForm = document.getElementById('registroForm');
+        registroForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Evita o envio do formulário padrão
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+            const nome = document.getElementById('nome').value; // Obtém o nome do usuário
+            registrarUsuario(email, senha, nome);
+        });
+    </script>
+</head>
+<header>
+    <h1>EdTech</h1>
+    <nav>
+      <a href="./index.html">Home</a> 
+      <a href="./login.html">Login</a>
+      <a href="./cursos.html">Cursos</a>
+      <a href="./PgPerguntas.html">Quizzes</a>
+      <a href="./painel.html">Painel de Progresso</a>
+    </nav>
+</header>
+<body>
+    <div class="registro-container">
+        <h2>Registro</h2>
+        <form id="registroForm">
+            <input type="text" id="nome" placeholder="Nome" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="senha" placeholder="Senha" required>
+            <button type="submit">Registrar</button>
+        </form>
+        <p>Já tem conta? <a href="./login.html">Faça login</a></p>
+    </div>
+</body>
+</html>
