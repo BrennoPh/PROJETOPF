@@ -58,6 +58,18 @@ nav a:hover {
   transform: scale(1.1);
   transition: all 0.5s;
 }
+.botao-logout {
+  background-color: var(--cor-primaria);
+  color: var(--cor-terciaria); 
+  font-family: var(--fonte-primaria); 
+  border: 0;
+}
+.botao-logout:hover {
+  background-color: var(--cor-hover);
+  transform: scale(1.07);
+  transition: all 0.5s;
+}
+
 
 body {
   font-family: var(--fonte-secundaria);

@@ -6,21 +6,24 @@
     <title>Cursos de Programação Funcional - Plataforma EdTech</title>
     <link rel="stylesheet" href="stiles/cursos.css">
 </head>
-<!-- Cabeçalho e Título -->
+
 <header>
     <h1>EdTech</h1>
     <nav>
-      <!-- Barra de Navegação -->
-      <a href="./index.html">Home</a> 
-      <a href="./login.html">Login</a>
-      <a href="./cursos.html">Cursos</a>
-      <a href="./PgPerguntas.html">Quizzes</a>
-      <a href="./painel.html">Painel de Progresso</a>
-  </nav>
+        <!-- Barra de Navegação -->
+        <a href="./index.html">Home</a> 
+        <a href="./login.html">Login</a>
+        <a href="./cursos.html">Cursos</a>
+        <a href="./PgPerguntas.html">Quizzes</a>
+        <a href="./painel.html">Painel de Progresso</a>
+        <button class="botao-logout" id="logoutButton">Logout</button>
+    </nav>
 </header>
+
 <body>
     <div class="courses-container">
         <h2>Escolha um Tópico de Programação Funcional</h2>
+        <p id="usuarioInfo">Carregando informações do usuário...</p> <!-- Exibe o usuário logado aqui -->
         <div class="course-list">
             <div class="course-card">
                 <h3>Funções Puras</h3>
@@ -54,9 +57,12 @@
             </div>
         </div>
     </div>
+    <script type="module" src="scripts/logout.js"></script>
+    <script type="module" src="scripts/verificaLogin.js"></script> 
 </body>
-     <!-- Rodapé -->
-     <footer>
-        <p>&copy; 2024 Plataforma EdTech - Todos os direitos reservados</p>
-    </footer>
+<!-- Rodapé -->
+<footer>
+    <p>&copy; 2024 Plataforma EdTech - Todos os direitos reservados</p>
+</footer>
+
 </html>
