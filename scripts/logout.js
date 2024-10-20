@@ -1,4 +1,4 @@
-import { getAuth, signOut } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
+import { getAuth, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
 
 // Configurações do Firebase (substitua com suas próprias configurações)
@@ -15,6 +15,29 @@ const firebaseConfig = {
 // Inicializa o Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
+// Observa mudanças na autenticação do usuário
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // Usuário está logado, exibe o botão de logout
+      logoutButton.style.display = "block";
+    } else {
+      // Usuário não está logado, oculta o botão de logout
+      logoutButton.style.display = "none";
+    }
+  });
+
+//   // Função de logout
+// logoutButton.addEventListener("click", () => {
+//     signOut(auth)
+//       .then(() => {
+//         // Redireciona para a página de login após o logout
+//         window.location.href = "login.html";
+//       })
+//       .catch((error) => {
+//         console.error("Erro ao deslogar:", error);
+//       });
+//   });
+
 
 // Função de logout
 document.getElementById("logoutButton").addEventListener("click", () => {
