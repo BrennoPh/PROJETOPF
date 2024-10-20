@@ -1,4 +1,4 @@
-import { atualizarPontuacao, getUserId, exibirPontuacao } from './pontuacao.js';
+import { atualizarPontuacao, getUserId } from './pontuacao.js';
 
 const perguntas = [
   { 
@@ -357,7 +357,7 @@ const perguntas = [
 // Variável para armazenar a pontuação
 const pontuacao = {
   total: 0,
-  nivel: 1,
+  nivelAtual: 1,
 };
 
 // Nível inicial do usuário
@@ -420,9 +420,9 @@ const renderizarPergunta = (indice, historicoRespostas, nivelAtual, perguntasAgr
 
 // No carregamento da página, exiba a pontuação
 window.onload = () => {
-  exibirPontuacao(); // Exibe a pontuação ao carregar a página
+  exibirPontuacaoQuiz(); // Exibe a pontuação ao carregar a página
 }
-    exibirPontuacao(); // Exibe a pontuação na tela após a atualização
+exibirPontuacaoQuiz()
 
 console.log("Pontuação total:", pontuacao.total)
   
@@ -440,7 +440,8 @@ console.log("Pontuação total:", pontuacao.total)
       renderizarOpcoes(perguntaAtual, indice, historicoRespostas, nivelAtual, perguntasAgrupadas);
     } else {
       // Exibe a pontuação final
-      document.getElementById('pergunta').innerText = `Quiz finalizado! Sua pontuação final é: ${pontuacao.total}`;
+      document.getElementById('perguntaquiz').innerText = `Quiz finalizado! Sua pontuação final neste quiz é: ${pontuacao.total}`;
+      document.getElementById('pergunta').innerText = `Quiz finalizado! Sua pontuação total do site é: ${docSnap.data().pontuacao}`;
       document.getElementById('opcoes').innerHTML = ''; // Limpa as opções
     }
   };
@@ -448,9 +449,19 @@ console.log("Pontuação total:", pontuacao.total)
   exibirPergunta(indice);
 };
 
+// Função para exibir a pontuação
+const exibirPontuacaoQuiz = () => {
+  const pontuacaoElement = document.getElementById('pontuacaoquiz');
+
+  if (pontuacaoElement) {
+      pontuacaoElement.textContent = `Pontuação neste Quiz: ${pontuacao.total}`;
+  }
+};
+
 // Função para renderizar opções de forma recursiva
 const renderizarOpcoes = (perguntaAtual, perguntaIndice, historicoRespostas, nivelAtual, perguntasAgrupadas) => {
   const opcoesDiv = document.getElementById('opcoes');
+  
 
   const renderizarRecursivo = (index) => {
     if (index < perguntaAtual.opcoes.length) {
@@ -466,6 +477,9 @@ const renderizarOpcoes = (perguntaAtual, perguntaIndice, historicoRespostas, niv
           alert('Resposta correta!');
           console.log(`Atualizando pontuação para o nível: ${nivelAtual}`);
           atualizarPontuacao(nivelAtual);
+          const pontosPorNivel = { 1: 1, 2: 2, 3: 3 };
+          const pontos = pontosPorNivel[nivelAtual] || 0;
+          pontuacao.total += pontos; // Atualiza a pontuação total
         } else {
           alert(`Resposta errada. A correta era: ${perguntaAtual.opcoes[perguntaAtual.respostaCorreta]}`);
         }

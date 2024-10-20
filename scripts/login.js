@@ -1,7 +1,7 @@
 // login.js
 
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
-import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
 import { getFirestore, doc, setDoc, getDoc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
 
 const firebaseConfig = {
@@ -17,6 +17,46 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+// Inicialize o provedor do Google
+const provider = new GoogleAuthProvider();
+
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // Usuário está autenticado
+      console.log("Usuário autenticado:", user);
+      // Aqui você pode redirecionar o usuário ou mostrar informações
+    } else {
+      // Usuário não está autenticado
+      console.log("Usuário não autenticado");
+    }
+  });
+  
+
+// Função para fazer login com Google
+const loginComGoogle = () => {
+    const auth = getAuth();
+    signInWithPopup(auth, provider)
+        .then((result) => {
+            // Informações do usuário autenticado
+            const user = result.user;
+            console.log("Usuário autenticado:", user);
+
+            // Se você precisar do token de autenticação para usar em outras APIs
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+        })
+        .catch((error) => {
+            // Tratamento de erros
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            const email = error.email;
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            console.error("Erro ao fazer login:", errorMessage);
+        });
+};
+
+// Evento de clique no botão para iniciar o login
+document.getElementById('login-google').addEventListener('click', loginComGoogle);
 
 // Login usuário
 const loginUsuario = async (email, senha) => {

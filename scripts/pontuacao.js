@@ -71,31 +71,27 @@ const atualizarPontuacao = async (nivel) => {
 // Função para exibir a pontuação do usuário
 const exibirPontuacao = async () => {
   const userId = await getUserId();
-  console.log("User ID:", userId); // Verifique o valor do userId
   if (!userId) {
       console.error("Usuário não foi identificado.");
-      return; // Sai da função se não houver userId
+      return;
   }
 
-  const docRef = doc(db, 'usuarios', userId); // Referência ao documento do usuário
-  const docSnap = await getDoc(docRef); // Obtém o documento
+  const docRef = doc(db, 'usuarios', userId);
+  const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-      // Se o documento existir, pega a pontuação
-      const pontuacao = docSnap.data().pontuacao || 0; // Define a pontuação como 0 se não existir
-      // Mostra a pontuação em um elemento HTML com ID 'pontuacao'
+      const pontuacao = docSnap.data().pontuacao || 0;
       const pontuacaoElement = document.getElementById('pontuacao');
       if (pontuacaoElement) {
-          pontuacaoElement.textContent = `Sua Pontuação: ${pontuacao}`; // Atualiza o conteúdo do elemento com a pontuação
+          pontuacaoElement.textContent = `Sua Pontuação do Site: ${pontuacao}`;
       } else {
           console.error("Elemento para exibir a pontuação não encontrado.");
       }
   } else {
       console.log("Usuário ainda não possui pontuação.");
-      // Exibe uma mensagem padrão ou inicializa a pontuação, se desejado
       const pontuacaoElement = document.getElementById('pontuacao');
       if (pontuacaoElement) {
-          pontuacaoElement.textContent = `Sua Pontuação: 0`; // Exibe 0 se não houver pontuação
+          pontuacaoElement.textContent = `Sua Pontuação: 0`;
       }
   }
 };
