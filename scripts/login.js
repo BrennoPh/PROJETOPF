@@ -34,29 +34,20 @@ onAuthStateChanged(auth, (user) => {
 
 // Função para fazer login com Google
 const loginComGoogle = () => {
-    const auth = getAuth();
     signInWithPopup(auth, provider)
-        .then((result) => {
-            // Informações do usuário autenticado
-            const user = result.user;
-            console.log("Usuário autenticado:", user);
-
-            // Se você precisar do token de autenticação para usar em outras APIs
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential.accessToken;
-        })
-        .catch((error) => {
-            // Tratamento de erros
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            const email = error.email;
-            const credential = GoogleAuthProvider.credentialFromError(error);
-            console.error("Erro ao fazer login:", errorMessage);
-        });
-};
-
-// Evento de clique no botão para iniciar o login
-document.getElementById('login-google').addEventListener('click', loginComGoogle);
+      .then((result) => {
+        // Usuário logado com sucesso
+        const user = result.user;
+        console.log("Usuário autenticado:", user);
+      })
+      .catch((error) => {
+        // Tratar erros
+        console.error("Erro no login com o Google:", error.message);
+      });
+  };
+  
+  // Exemplo de botão de login
+  document.getElementById('login-google').addEventListener('click', loginComGoogle);
 
 // Login usuário
 const loginUsuario = async (email, senha) => {
