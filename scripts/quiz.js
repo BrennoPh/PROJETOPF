@@ -1,3 +1,5 @@
+import { atualizarPontuacao, getUserId, exibirPontuacao } from './pontuacao.js';
+
 const perguntas = [
   { 
     nivel: 1,
@@ -352,8 +354,14 @@ const perguntas = [
     } 
 ];
 
+// Variável para armazenar a pontuação
+const pontuacao = {
+  total: 0,
+  nivel: 1,
+};
+
 // Nível inicial do usuário
-const nivelAtual = 1;
+const nivelAtual = 1
 
 const checarResposta = (indiceResposta, perguntaAtual) => {
   // Verifica se a pergunta atual existe
@@ -409,6 +417,14 @@ const agruparPorNivel = (perguntas) => {
 // Função para renderizar perguntas
 const renderizarPergunta = (indice, historicoRespostas, nivelAtual, perguntasAgrupadas) => {
   const perguntasFiltradas = perguntasAgrupadas[nivelAtual] || [];
+
+// No carregamento da página, exiba a pontuação
+window.onload = () => {
+  exibirPontuacao(); // Exibe a pontuação ao carregar a página
+}
+    exibirPontuacao(); // Exibe a pontuação na tela após a atualização
+
+console.log("Pontuação total:", pontuacao.total)
   
   const exibirPergunta = (indice) => {
     if (indice < perguntasFiltradas.length && indice < 20) {
@@ -424,7 +440,7 @@ const renderizarPergunta = (indice, historicoRespostas, nivelAtual, perguntasAgr
       renderizarOpcoes(perguntaAtual, indice, historicoRespostas, nivelAtual, perguntasAgrupadas);
     } else {
       // Exibe a pontuação final
-      document.getElementById('pergunta').innerText = 'Quiz finalizado.';
+      document.getElementById('pergunta').innerText = `Quiz finalizado! Sua pontuação final é: ${pontuacao.total}`;
       document.getElementById('opcoes').innerHTML = ''; // Limpa as opções
     }
   };
@@ -443,14 +459,17 @@ const renderizarOpcoes = (perguntaAtual, perguntaIndice, historicoRespostas, niv
       botaoOpcao.addEventListener('click', () => {
         // Passa a perguntaAtual diretamente para checarResposta
         const resposta = checarResposta(index, perguntaAtual);
-        
+
         historicoRespostas.push(resposta); // Adiciona a resposta ao histórico
 
         if (resposta) {
           alert('Resposta correta!');
+          console.log(`Atualizando pontuação para o nível: ${nivelAtual}`);
+          atualizarPontuacao(nivelAtual);
         } else {
           alert(`Resposta errada. A correta era: ${perguntaAtual.opcoes[perguntaAtual.respostaCorreta]}`);
         }
+        
 
         // Atualiza o nível do usuário baseado no desempenho
         const novoNivel = calcularNivel(historicoRespostas);
@@ -458,9 +477,9 @@ const renderizarOpcoes = (perguntaAtual, perguntaIndice, historicoRespostas, niv
         // Incrementa o índice para a próxima pergunta
         const proximoIndice = perguntaIndice + 1;
 
+
         // Se o nível mudou, reinicia o índice para 0 do novo nível
         if (novoNivel !== nivelAtual) {
-          nivelAtual = novoNivel;
           renderizarPergunta(0, historicoRespostas, novoNivel, perguntasAgrupadas);
         } else {
           // Se o nível não mudou, continua para a próxima pergunta
