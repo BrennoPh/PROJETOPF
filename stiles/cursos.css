@@ -122,6 +122,19 @@ nav a:hover {
   transition: all 0.5s;
 }
 
+.btn {
+  display: inline-block;
+  background-color: var(--cor-terciaria);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bol
+}
+.btn:hover {
+background-color: var(--cor-botao-hover);
+}
+
 footer {
   text-align: center;
   padding: 20px 0 20px 0;
