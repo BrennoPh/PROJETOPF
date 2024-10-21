@@ -1,4 +1,23 @@
-import { atualizarPontuacao, getUserId } from './pontuacao.js';
+import { atualizarPontuacao, getUserId} from './pontuacao.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
+import { getFirestore, collection, doc, setDoc, getDoc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
+
+// Inicialize o Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyB20oXuHGDHTEIl6PjVSiD9vGiOwDsaJ3s",
+  authDomain: "plataforma-edtech-b4f7d.firebaseapp.com",
+  projectId: "plataforma-edtech-b4f7d",
+  storageBucket: "plataforma-edtech-b4f7d.appspot.com",
+  messagingSenderId: "447721692450",
+  appId: "1:447721692450:web:9c567f7b645dab7d01d97b",
+  measurementId: "G-CHWEEQGZCR"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
 
 const perguntas = [
   { 
@@ -351,7 +370,31 @@ const perguntas = [
         'Elas aumentam a complexidade da implementação de funções puras.'
       ],
       respostaCorreta: 1
-    } 
+    },
+    {
+      nivel: 1,
+      tipo: 'algoritmo',
+      pergunta: 'teste 1234?',
+      opcoes: [
+        'a',
+        'b',
+        'c',
+        'd'
+      ],
+      respostaCorreta: 1
+    },
+    {
+      nivel: 1,
+      tipo: 'algoritmo',
+      pergunta: 'teste 4321?',
+      opcoes: [
+        'a',
+        'b',
+        'c',
+        'd'
+      ],
+      respostaCorreta: 1
+    }
 ];
 
 // Variável para armazenar a pontuação
@@ -362,6 +405,8 @@ const pontuacao = {
 
 // Nível inicial do usuário
 const nivelAtual = 1
+
+const tipo = ['pureza', 'algoritmo']
 
 const checarResposta = (indiceResposta, perguntaAtual) => {
   // Verifica se a pergunta atual existe
@@ -414,9 +459,25 @@ const agruparPorNivel = (perguntas) => {
   return agregar(perguntas);
 };
 
+  // Função para filtrar perguntas por tipo
+  const filtrarPorTipo = (perguntas, tipo) => {
+    return perguntas.filter(pergunta => pergunta.tipo === tipo);
+  };
+
+
+  
 // Função para renderizar perguntas
-const renderizarPergunta = (indice, historicoRespostas, nivelAtual, perguntasAgrupadas) => {
-  const perguntasFiltradas = perguntasAgrupadas[nivelAtual] || [];
+const renderizarPergunta = (indice, historicoRespostas, nivelAtual, perguntasAgrupadas, tipo) => {
+  const perguntasFiltradas = filtrarPorTipo(perguntasAgrupadas[nivelAtual], tipo);
+  console.log("Perguntas filtradas:", perguntasFiltradas);
+
+  if (perguntasFiltradas.length === 0) {
+    console.log('Nenhuma pergunta encontrada para este tipo.');
+    return;
+  }
+
+  //Verifica se os elementos pergunta e opcoes existem no HTML
+  
 
 // No carregamento da página, exiba a pontuação
 window.onload = () => {
@@ -426,25 +487,30 @@ exibirPontuacaoQuiz()
 
 console.log("Pontuação total:", pontuacao.total)
   
-  const exibirPergunta = (indice) => {
-    if (indice < perguntasFiltradas.length && indice < 20) {
-      const perguntaDiv = document.getElementById('pergunta');
-      const opcoesDiv = document.getElementById('opcoes');
+const exibirPergunta = (indice) => {
+  // Filtra as perguntas para o nível atual e tipo selecionado
+  const perguntasFiltradas = filtrarPorTipo(perguntasAgrupadas[nivelAtual], tipo);
+  console.log("Perguntas filtradas:", perguntasFiltradas); // Para depuração
 
-      const perguntaAtual = perguntasFiltradas[indice];
+  // Verifica se há perguntas disponíveis para exibir
+  if (indice >= 20 || indice >= perguntasFiltradas.length) {
+    console.log("Nenhuma pergunta disponível para o tipo e nível atual.");
+    const quizFinalizado =  document.getElementById('pergunta').innerHTML = `Quiz finalizado! Sua pontuação neste quiz é: ${pontuacao.total}`; 
+    const opcoesVazia = document.getElementById('opcoes').innerHTML = ''; // Limpa as opções
+    return opcoesVazia, quizFinalizado
+  } else {
 
-      perguntaDiv.innerHTML = `<strong>Nível ${nivelAtual}</strong><br>${perguntaAtual.pergunta}`;
-      opcoesDiv.innerHTML = ''; // Limpa as opções anteriores
+  // Caso ainda haja perguntas e o limite não foi atingido, exibe a pergunta
+  const perguntaDiv = document.getElementById('pergunta');
+  const opcoesDiv = document.getElementById('opcoes');
+  const perguntaAtual = perguntasFiltradas[indice];
+  perguntaDiv.innerHTML = `<strong>Nível ${nivelAtual}</strong><br>${perguntaAtual.pergunta}`;
+  opcoesDiv.innerHTML = ''; // Limpa as opções anteriores
 
-      // Renderiza as opções de resposta
-      renderizarOpcoes(perguntaAtual, indice, historicoRespostas, nivelAtual, perguntasAgrupadas);
-    } else {
-      // Exibe a pontuação final
-      document.getElementById('perguntaquiz').innerText = `Quiz finalizado! Sua pontuação final neste quiz é: ${pontuacao.total}`;
-      document.getElementById('pergunta').innerText = `Quiz finalizado! Sua pontuação total do site é: ${docSnap.data().pontuacao}`;
-      document.getElementById('opcoes').innerHTML = ''; // Limpa as opções
-    }
-  };
+  // Renderiza as opções de resposta
+  renderizarOpcoes(perguntaAtual, indice, historicoRespostas, nivelAtual, perguntasAgrupadas, tipo);
+  }
+};
 
   exibirPergunta(indice);
 };
@@ -459,7 +525,7 @@ const exibirPontuacaoQuiz = () => {
 };
 
 // Função para renderizar opções de forma recursiva
-const renderizarOpcoes = (perguntaAtual, perguntaIndice, historicoRespostas, nivelAtual, perguntasAgrupadas) => {
+const renderizarOpcoes = (perguntaAtual, perguntaIndice, historicoRespostas, nivelAtual, perguntasAgrupadas, tipo) => {
   const opcoesDiv = document.getElementById('opcoes');
   
 
@@ -488,20 +554,24 @@ const renderizarOpcoes = (perguntaAtual, perguntaIndice, historicoRespostas, niv
         // Atualiza o nível do usuário baseado no desempenho
         const novoNivel = calcularNivel(historicoRespostas);
         
+
         // Incrementa o índice para a próxima pergunta
         const proximoIndice = perguntaIndice + 1;
 
-
+        // Verifique se ainda há perguntas disponíveis
+        const perguntasFiltradas = filtrarPorTipo(perguntasAgrupadas[nivelAtual], tipo);
         // Se o nível mudou, reinicia o índice para 0 do novo nível
         if (novoNivel !== nivelAtual) {
-          renderizarPergunta(0, historicoRespostas, novoNivel, perguntasAgrupadas);
+            // Verifica se há perguntas disponíveis para exibir
+          renderizarPergunta(0, historicoRespostas, novoNivel, perguntasAgrupadas, tipo);
         } else {
           // Se o nível não mudou, continua para a próxima pergunta
-          renderizarPergunta(proximoIndice, historicoRespostas, nivelAtual, perguntasAgrupadas);
+          renderizarPergunta(proximoIndice, historicoRespostas, nivelAtual, perguntasAgrupadas, tipo);
         }
       });
       opcoesDiv.appendChild(botaoOpcao);
       renderizarRecursivo(index + 1); // Chama para o próximo índice
+      
     }
   };
 
@@ -514,8 +584,8 @@ const historicoRespostas = [];
 // Agrupa as perguntas por nível
 const perguntasAgrupadas = agruparPorNivel(perguntas);
 
-// Inicia o quiz exibindo a primeira pergunta
-renderizarPergunta(0, historicoRespostas, nivelAtual, perguntasAgrupadas);
 
-const perguntasNivel2 = agruparPorNivel(perguntas, 2); // Passando nível 2, por exemplo
-console.log(perguntasNivel2)
+const tipoPureza = tipo[0]
+const tipoAltaOrdem = tipo[1]
+// Inicia o quiz exibindo a primeira pergunta
+renderizarPergunta(0, historicoRespostas, nivelAtual, perguntasAgrupadas, tipoAltaOrdem);

@@ -84,6 +84,7 @@ const exibirPontuacao = async () => {
       const pontuacaoElement = document.getElementById('pontuacao');
       if (pontuacaoElement) {
           pontuacaoElement.textContent = `Sua Pontuação do Site: ${pontuacao}`;
+          return 
       } else {
           console.error("Elemento para exibir a pontuação não encontrado.");
       }
@@ -96,4 +97,5 @@ const exibirPontuacao = async () => {
   }
 };
 
-export { atualizarPontuacao, getUserId, exibirPontuacao };
+
+export { atualizarPontuacao, getUserId, exibirPontuacao};
