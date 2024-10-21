@@ -39,6 +39,7 @@ const loginComGoogle = () => {
         // Usuário logado com sucesso
         const user = result.user;
         console.log("Usuário autenticado:", user);
+        window.location.href = "./index.html"; // Redireciona para a página principal
       })
       .catch((error) => {
         // Tratar erros
@@ -54,14 +55,31 @@ const loginUsuario = async (email, senha) => {
     try {
         const usuario = await signInWithEmailAndPassword(auth, email, senha);
         console.log("Usuário logado:", usuario);
-        const usuarioId = usuario.user.uid;
-        await recuperarDadosUsuario(usuarioId);
-        // Redireciona para a página index.html após o login bem-sucedido
-        window.location.href = 'index.html';
+
+        // Verifica se o e-mail foi verificado
+        if (usuario.user.emailVerified) {
+            console.log("E-mail verificado.");
+            alert("Login realizado com sucesso!");
+            window.location.href = "./index.html"; // Redireciona para a página principal
+        } else {
+            // Se o e-mail não estiver verificado, desloga o usuário e pede para verificar o e-mail
+            await auth.signOut();
+            alert("Por favor, verifique seu e-mail antes de fazer login.");
+        }
     } catch (error) {
-        console.error("Erro ao logar:", error);
+        console.error("Erro ao fazer login:", error);
+        alert("Erro ao fazer login: " + error.message);
     }
 };
+
+// Evento de submissão do formulário de login
+const loginForm = document.getElementById('loginForm');
+loginForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // Evita o envio do formulário padrão
+    const email = document.getElementById('email').value;
+    const senha = document.getElementById('senha').value;
+    loginUsuario(email, senha);
+});
 
 const armazenarDadosUsuario = async (usuarioId, dados) => {
     try {
@@ -87,11 +105,3 @@ const recuperarDadosUsuario = async (usuarioId) => {
     }
 };
 
-// Manipulação do formulário de login
-const loginForm = document.getElementById('loginForm');
-loginForm.addEventListener('submit', (e) => {
-    e.preventDefault(); // Evita o envio do formulário padrão
-    const email = document.getElementById('email').value;
-    const senha = document.getElementById('senha').value;
-    loginUsuario(email, senha);
-});
