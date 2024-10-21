@@ -1346,344 +1346,279 @@ const perguntas = [
       respostaCorreta: 0
     },
     { 
-      nivel: 1,
-      pergunta: 'Assinale a alternativa que melhor representa seu objetivo.',
-      tipo: 'recursividade',
+      nivel: 1, 
+      pergunta: 'Assinale a alternativa que melhor representa seu objetivo.\nconst fun = (n) => {\nif (n==0) return "0"\nelse if (n==1) return "1"\nelse return 1+fun(Math.floor(n/2)) + (n%2).toString()\n}', 
       opcoes: [
-        'Aproxima para o maio inteiro e transforma em string.',
-        'Representação decimal do binário.',
-        'Representação binária do inteiro.',
+        'Aproxima para o maior inteiro e transforma em string.', 
+        'Representação decimal do binário.', 
+        'Representação binária do inteiro.', 
         'Aproxima para o menor inteiro e transforma em string.'
-      ],
-      respostaCorreta: 2
+      ], 
+      respostaCorreta: 2 
     },
     { 
-      nivel: 1,
-      pergunta: 'Assinale a alternativa que representa o resultado obtido.',
-      tipo: 'recursividade',
+      nivel: 1, 
+      pergunta: 'Assinale a alternativa que representa o resultado obtido.\nconst fun = (fn, [x,...xs]) => {\nif (x===undefined) return [];\nelse return [fn(x),...fun(fn,xs)];\n};\nconsole.log(fun([1,2,3,4,5]));', 
       opcoes: [
-        '[1,4,9,16,25]',
-        '[2,3,4,5,6]',
-        '[2,4,6,8,10]',
+        '[1,4,9,16,25]', 
+        '[2,3,4,5,6]', 
+        '[2,4,6,8,10]', 
         '[1,2,3,4,5]'
-      ],
-      respostaCorreta: 2
+      ], 
+      respostaCorreta: 2 
     },
     { 
-      nivel: 1,
-      pergunta: 'O que é recursão em programação?',
-      tipo: 'recursividade',
+      nivel: 1, 
+      pergunta: 'O que é recursão em programação?', 
       opcoes: [
-        'Um loop infinito.',
-        'Uma função que se chama repetidamente até atingir um caso base.',
-        'Uma função que só é usada em linguagens de baixo nível.',
+        'Um loop infinito.', 
+        'Uma função que se chama repetidamente até atingir um caso base.', 
+        'Uma função que só é usada em linguagens de baixo nível.', 
         'Um método que sempre retorna undefined.'
-      ],
-      respostaCorreta: 1
+      ], 
+      respostaCorreta: 1 
     },
     { 
-      nivel: 1,
-      pergunta: 'Qual a importância de um caso base em recursão?',
-      tipo: 'recursividade',
+      nivel: 1, 
+      pergunta: 'Qual a importância de um caso base em recursão?', 
       opcoes: [
-        'Evitar que a função continue indefinidamente.',
-        'Garantir que a função seja iterativa.',
-        'Garantir que a função use variáveis globais.',
+        'Evitar que a função continue indefinidamente.', 
+        'Garantir que a função seja iterativa.', 
+        'Garantir que a função use variáveis globais.', 
         'Melhorar a legibilidade do código.'
-      ],
-      respostaCorreta: 0
+      ], 
+      respostaCorreta: 0 
     },
     { 
-      nivel: 1,
-      pergunta: 'O que acontece se uma função recursiva não tiver um caso base?',
-      tipo: 'recursividade',
+      nivel: 1, 
+      pergunta: 'O que acontece se uma função recursiva não tiver um caso base?', 
       opcoes: [
-        'A função será chamada apenas uma vez.',
-        'Ela entrará em um loop infinito até consumir toda a memória.',
-        'A função nunca será chamada.',
+        'A função será chamada apenas uma vez.', 
+        'Ela entrará em um loop infinito até consumir toda a memória.', 
+        'A função nunca será chamada.', 
         'A função retornará automaticamente 0.'
-      ],
-      respostaCorreta: 1
+      ], 
+      respostaCorreta: 1 
     },
     { 
-      nivel: 1,
-      pergunta: 'Qual das opções abaixo é uma função recursiva para calcular o fatorial de um número?',
-      tipo: 'recursividade',
+      nivel: 1, 
+      pergunta: 'Qual das opções abaixo é uma função recursiva para calcular o fatorial de um número?', 
       opcoes: [
-        'function factorial(n) { return n * factorial(n-1); }',
-        'function factorial(n) { let result = 1; for(let i = 1; i <= n; i++) { result *= i; } return result; }',
-        'function factorial(n) { if (n <= 1) return 1; return n * factorial(n - 1); }',
+        'function factorial(n) { return n * factorial(n-1); }', 
+        'function factorial(n) { let result = 1; for(let i = 1; i <= n; i++) { result *= i; } return result; }', 
+        'function factorial(n) { if (n <= 1) return 1; return n * factorial(n - 1); }', 
         'function factorial(n) { return n + factorial(n-1); }'
-      ],
-      respostaCorreta: 2
+      ], 
+      respostaCorreta: 2 
     },
     { 
-      nivel: 1,
-      pergunta: 'Escreva uma função recursiva para somar os números de um array. Qual é o caso base correto?',
-      tipo: 'recursividade',
+      nivel: 1, 
+      pergunta: 'Escreva uma função recursiva para somar os números de um array. Qual é o caso base correto?', 
       opcoes: [
-        'if (arr.length === 0) return 0;',
-        'if (arr[0] === null) return 0;',
-        'if (arr.length > 0) return 0;',
+        'if (arr.length === 0) return 0;', 
+        'if (arr[0] === null) return 0;', 
+        'if (arr.length > 0) return 0;', 
         'if (arr.length === 1) return arr[0];'
-      ],
-      respostaCorreta: 0
+      ], 
+      respostaCorreta: 0 
     },
     { 
-      nivel: 1,
-      pergunta: 'Qual é o caso base correto para calcular o fatorial recursivamente?',
-      tipo: 'recursividade',
+      nivel: 1, 
+      pergunta: 'Qual é o caso base correto para calcular o fatorial recursivamente?', 
       opcoes: [
-        'if (n === 0) return 0;',
-        'if (n <= 1) return 1;',
-        'if (n === 1) return 0;',
+        'if (n === 0) return 0;', 
+        'if (n <= 1) return 1;', 
+        'if (n === 1) return 0;', 
         'if (n === -1) return n;'
-      ],
-      respostaCorreta: 1
+      ], 
+      respostaCorreta: 1 
     },
     { 
-      nivel: 1,
-      pergunta: 'Em quais situações a recursão não é recomendada?',
-      tipo: 'recursividade',
+      nivel: 1, 
+      pergunta: 'Em quais situações a recursão não é recomendada?', 
       opcoes: [
-        'Quando o problema pode ser resolvido facilmente com laços iterativos.',
-        'Quando o caso base é desconhecido.',
-        'Quando a função precisa ser otimizada.',
+        'Quando o problema pode ser resolvido facilmente com laços iterativos.', 
+        'Quando o caso base é desconhecido.', 
+        'Quando a função precisa ser otimizada.', 
         'Quando o problema envolve processamento de texto.'
-      ],
-      respostaCorreta: 0
+      ], 
+      respostaCorreta: 0 
     },
     { 
-      nivel: 1,
-      pergunta: 'Qual das seguintes é uma vantagem da recursão sobre laços iterativos?',
-      tipo: 'recursividade',
+      nivel: 1, 
+      pergunta: 'Qual das seguintes é uma vantagem da recursão sobre laços iterativos?', 
       opcoes: [
-        'Ela sempre executa mais rápido que laços.',
-        'Ela pode ser mais expressiva e simples para resolver problemas que envolvem subdivisão, como árvores.',
-        'Ela nunca consome mais memória do que a iteração.',
+        'Ela sempre executa mais rápido que laços.', 
+        'Ela pode ser mais expressiva e simples para resolver problemas que envolvem subdivisão, como árvores.', 
+        'Ela nunca consome mais memória do que a iteração.', 
         'Ela não precisa de um caso base.'
-      ],
-      respostaCorreta: 1
+      ], 
+      respostaCorreta: 1 
     },
-  
-    // MÉDIAS
     { 
-      nivel: 2,
-      pergunta: 'Assinale a alternativa que melhor representa seu objetivo.',
-      tipo: 'recursividade',
+      nivel: 2, 
+      pergunta: 'Assinale a alternativa que melhor representa seu objetivo.\nconst fun = (a,b) => {\nif (b==0) return 0\nelse return fun(a,b-1)+a\n}', 
       opcoes: [
-        'Multiplica dois números naturais.',
-        'Somas dois números naturais.',
-        'Potencia a^b.',
+        'Multiplica dois números naturais.', 
+        'Somas dois números naturais.', 
+        'Potencia a^b.', 
         'Potencia b^a.'
-      ],
-      respostaCorreta: 0
+      ], 
+      respostaCorreta: 0 
     },
     { 
-      nivel: 2,
-      pergunta: 'Como calcular o fatorial de um número natural?',
-      tipo: 'recursividade',
+      nivel: 2, 
+      pergunta: 'Como calcular o fatorial de um número natural?', 
       opcoes: [
-        'const fun = (n) => n==1 ? 1: fun(n-1)',
-        'const fun = (n) => n==1 ? 1: fun(n-1)*n',
-        'const fun = (n) => n==0 ? 1: fun(n-1)*n',
+        'const fun = (n) => n==1 ? 1: fun(n-1)', 
+        'const fun = (n) => n==1 ? 1: fun(n-1)*n', 
+        'const fun = (n) => n==0 ? 1: fun(n-1)*n', 
         'const fun = (n) => n==0 ? 1: fun(n-1)'
-      ],
-      respostaCorreta: 2
+      ], 
+      respostaCorreta: 2 
     },
     { 
-      nivel: 2,
-      pergunta: 'Função recursiva que verifica se uma lista de inteiros está ordenada em ordem crescente. Qual trecho?',
-      tipo: 'recursividade',
+      nivel: 2, 
+      pergunta: 'Função recursiva que verifica se uma lista de inteiros está ordenada em ordem crescente. Qual trecho?\nconst fun = ([x,y,...xs]) => {\nif (y === undefined) return true;\nelse if (x>y) return false;\nelse return fun(B);\n}', 
       opcoes: [
-        'xs',
-        '[y,...xs]',
-        'xs.slice(1)',
+        'xs', 
+        '[y,...xs]', 
+        'xs.slice(1)', 
         '[x,...xs]'
-      ],
-      respostaCorreta: 1
+      ], 
+      respostaCorreta: 1 
     },
     { 
-      nivel: 2,
-      pergunta: 'Assinale a alternativa que representa o resultado obtido.',
-      tipo: 'recursividade',
+      nivel: 2, 
+      pergunta: 'Assinale a alternativa que representa o resultado obtido.\nconst fun = (n) => {\nif (n>=101) return n-10\nelse return fun(fun(n+11))\n}\nconsole.log(fun(98))', 
       opcoes: [
-        '88',
-        '91',
-        '99',
+        '88', 
+        '91', 
+        '99', 
         '101'
-      ],
-      respostaCorreta: 1
+      ], 
+      respostaCorreta: 1 
     },
     { 
-      nivel: 2,
-      pergunta: 'Assinale a alternativa que representa o resultado obtido.',
-      tipo: 'recursividade',
+      nivel: 2, 
+      pergunta: 'Assinale a alternativa que representa o resultado obtido.\nconst fun = ([x,y,...xs]) => {\nif (y===undefined) return [];\nelse return [x+y,...fun(xs)];\n};\nconsole.log(fun([1,2,3,4,5]));', 
       opcoes: [
-        '[3,7]',
-        '[3,5,7,9]',
-        '[3,7,5]',
+        '[3,7]', 
+        '[3,5,7,9]', 
+        '[3,7,5]', 
         '[15]'
-      ],
-      respostaCorreta: 0
+      ], 
+      respostaCorreta: 0 
     },
     { 
-      nivel: 2,
-      pergunta: 'Qual é a saída da seguinte função recursiva?',
-      tipo: 'recursividade',
+      nivel: 2, 
+      pergunta: 'Qual é a saída da seguinte função recursiva?\nfunction sum(n) {\nif (n <= 0) return 0;\nreturn n + sum(n - 1);\n}\nconsole.log(sum(3));', 
       opcoes: [
-        '3',
-        '6',
-        '0',
+        '3', 
+        '6', 
+        '0', 
         '1'
-      ],
-      respostaCorreta: 1
+      ], 
+      respostaCorreta: 1 
     },
     { 
-      nivel: 2,
-      pergunta: 'Qual das seguintes funções calcula a soma de todos os elementos de uma lista de forma recursiva?',
-      tipo: 'recursividade',
+      nivel: 2, 
+      pergunta: 'Qual das seguintes funções calcula a soma de todos os elementos de uma lista de forma recursiva?', 
       opcoes: [
-        'function sum(arr) { return arr.reduce((acc, x) => acc + x); }',
-        'function sum(arr) { return arr[0] + sum(arr.slice(1)); }',
-        'function sum(arr) { if (arr.length === 0) return 0; return arr[0] + sum(arr.slice(1)); }',
+        'function sum(arr) { return arr.reduce((acc, x) => acc + x); }', 
+        'function sum(arr) { return arr[0] + sum(arr.slice(1)); }', 
+        'function sum(arr) { if (arr.length === 0) return 0; return arr[0] + sum(arr.slice(1)); }', 
         'function sum(arr) { let total = 0; for(let i = 0; i < arr.length; i++) { total += arr[i]; } return total; }'
-      ],
-      respostaCorreta: 2
+      ], 
+      respostaCorreta: 2 
     },
     { 
-      nivel: 2,
-      pergunta: 'Qual é o comportamento da função a seguir, e o que ela retorna para fib(6)?',
-      tipo: 'recursividade',
+      nivel: 2, 
+      pergunta: 'Qual das seguintes é a função correta para verificar se uma string é um palíndromo recursivamente?', 
       opcoes: [
-        'Ela calcula o fatorial de n e retorna 720.',
-        'Ela calcula o 6º número de Fibonacci e retorna 8.',
-        'Ela entra em um loop infinito, pois não tem caso base.',
-        'Ela calcula o 6º número de Fibonacci e retorna 13.'
-      ],
-      respostaCorreta: 1
+        'function isPalindrome(str) { return str === str.split("").reverse().join(""); }', 
+        'function isPalindrome(str) { if (str.length <= 1) return true; if (str[0] === str[str.length - 1]) return isPalindrome(str.slice(1, -1)); return false; }', 
+        'function isPalindrome(str) { let reversed = ""; for(let i = str.length - 1; i >= 0; i--) { reversed += str[i]; } return str === reversed; }', 
+        'function isPalindrome(str) { return str == str.split("").reverse().join(""); }'
+      ], 
+      respostaCorreta: 1 
     },
     { 
-      nivel: 2,
-      pergunta: 'Qual das opções descreve melhor o funcionamento da função recursiva abaixo?',
-      tipo: 'recursividade',
+      nivel: 2, 
+      pergunta: 'O que a seguinte função recursiva faz?\nfunction reverse(str) {\nif (str === "") return "";\nelse return reverse(str.slice(1)) + str[0];\n}', 
       opcoes: [
-        'Inverte uma string recursivamente, removendo o primeiro caractere em cada chamada e adicionando-o no final.',
-        'Adiciona o primeiro caractere da string ao final de uma string vazia em cada chamada recursiva.',
-        'Remove o último caractere da string em cada chamada até que não haja mais caracteres.',
-        'Retorna a string original sem alterações.'
-      ],
-      respostaCorreta: 0
-    },
-  
-    // DIFÍCEIS
-    { 
-      nivel: 3,
-      pergunta: 'Qual das seguintes implementações representa uma chamada recursiva?',
-      tipo: 'recursividade',
-      opcoes: [
-        'function countDown(n) { if (n > 0) { console.log(n); countDown(n-1); } }',
-        'function countDown(n) { for (let i = n; i > 0; i--) { console.log(i); } }',
-        'function countDown(n) { return n; }',
-        'function countDown(n) { return n-1; }'
-      ],
-      respostaCorreta: 0
+        'Verifica se uma string é um palíndromo.', 
+        'Inverte uma string.', 
+        'Remove os espaços de uma string.', 
+        'Retorna o tamanho de uma string.'
+      ], 
+      respostaCorreta: 1 
     },
     { 
-      nivel: 3,
-      pergunta: 'Como a recursão pode ser usada para percorrer uma estrutura de árvore?',
-      tipo: 'recursividade',
+      nivel: 3, 
+      pergunta: 'Qual é o resultado da seguinte função?\nfunction f(n) {\nif (n == 1) return 1;\nif (n % 2 == 0) return f(n/2);\nelse return f(3*n+1);\n}\nconsole.log(f(6));', 
       opcoes: [
-        'Visitando cada nó e chamando a função para cada filho recursivamente.',
-        'Visitando cada nó e usando um loop para iterar sobre os filhos.',
-        'Usando uma pilha para armazenar os nós visitados.',
-        'Realizando chamadas assíncronas para cada nó.'
-      ],
-      respostaCorreta: 0
+        '1', 
+        '2', 
+        '3', 
+        '6'
+      ], 
+      respostaCorreta: 0 
     },
     { 
-      nivel: 3,
-      pergunta: 'O que é "profundidade da recursão"?',
-      tipo: 'recursividade',
+      nivel: 3, 
+      pergunta: 'Qual é o valor final da variável a após a execução da função?\nlet a = 10;\nfunction changeA(x) {\nif (x === 0) return;\nelse {\na += x;\nchangeA(x - 1);\n}\n}\nchangeA(5);', 
       opcoes: [
-        'O número máximo de vezes que uma função pode chamar a si mesma.',
-        'O número total de chamadas recursivas em uma execução.',
-        'O número de argumentos que uma função pode ter.',
-        'O número de elementos em uma estrutura de dados.'
-      ],
-      respostaCorreta: 0
+        '10', 
+        '15', 
+        '20', 
+        '25'
+      ], 
+      respostaCorreta: 2 
     },
     { 
-      nivel: 3,
-      pergunta: 'Em qual situação a recursão não é uma abordagem recomendada?',
-      tipo: 'recursividade',
+      nivel: 3, 
+      pergunta: 'O que o código abaixo faz?\nfunction pow(x, n) {\nif (n == 0) return 1;\nelse return x * pow(x, n - 1);\n}', 
       opcoes: [
-        'Quando o problema pode ser dividido em subproblemas menores.',
-        'Quando a profundidade da recursão pode levar a um estouro de pilha.',
-        'Quando não há necessidade de repetição de código.',
-        'Quando o problema é simples e pode ser resolvido com um único passo.'
-      ],
-      respostaCorreta: 1
+        'Calcula x elevado a n.', 
+        'Multiplica x por n.', 
+        'Calcula o fatorial de x.', 
+        'Inverte os valores de x e n.'
+      ], 
+      respostaCorreta: 0 
     },
     { 
-      nivel: 3,
-      pergunta: 'Qual das funções a seguir tem maior probabilidade de causar um estouro de pilha?',
-      tipo: 'recursividade',
+      nivel: 3, 
+      pergunta: 'O que faz a seguinte função recursiva?\nfunction fib(n) {\nif (n <= 1) return n;\nreturn fib(n - 1) + fib(n - 2);\n}', 
       opcoes: [
-        'function countdown(n) { if (n <= 0) return; countdown(n - 1); }',
-        'function factorial(n) { if (n === 0) return 1; return n * factorial(n - 1); }',
-        'function fibonacci(n) { if (n <= 1) return n; return fibonacci(n - 1) + fibonacci(n - 2); }',
-        'function sum(arr) { if (arr.length === 0) return 0; return arr[0] + sum(arr.slice(1)); }'
-      ],
-      respostaCorreta: 2
+        'Calcula o fatorial de n.', 
+        'Calcula o n-ésimo número da sequência de Fibonacci.', 
+        'Verifica se n é par ou ímpar.', 
+        'Calcula a soma de n com o número anterior.'
+      ], 
+      respostaCorreta: 1 
     },
     { 
-      nivel: 3,
-      pergunta: 'O que é a "recursão de cauda"?',
-      tipo: 'recursividade',
+      nivel: 3, 
+      pergunta: 'Qual é o resultado da seguinte função recursiva?\nfunction ackermann(m, n) {\nif (m == 0) return n + 1;\nif (m > 0 && n == 0) return ackermann(m - 1, 1);\nif (m > 0 && n > 0) return ackermann(m - 1, ackermann(m, n - 1));\n}\nconsole.log(ackermann(2, 3));', 
       opcoes: [
-        'Uma técnica de otimização que permite que a chamada recursiva seja a última operação da função.',
-        'Um tipo de recursão que não tem casos base.',
-        'Um padrão de recursão que resulta em chamadas assíncronas.',
-        'Um estilo de programação que evita loops.'
-      ],
-      respostaCorreta: 0
+        '5', 
+        '7', 
+        '9', 
+        '11'
+      ], 
+      respostaCorreta: 1 
     },
     { 
-      nivel: 3,
-      pergunta: 'Qual é o resultado da chamada recursiva fib(5)?',
-      tipo: 'recursividade',
+      nivel: 3, 
+      pergunta: 'Qual o resultado final da seguinte função recursiva?\nfunction product(x, y) {\nif (y === 0) return 0;\nelse return x + product(x, y - 1);\n}\nconsole.log(product(4, 3));', 
       opcoes: [
-        '0',
-        '1',
-        '5',
-        '8'
-      ],
-      respostaCorreta: 3
-    },
-    { 
-      nivel: 3,
-      pergunta: 'O que é a complexidade de tempo da função de Fibonacci recursiva?',
-      tipo: 'recursividade',
-      opcoes: [
-        'O(n)',
-        'O(n^2)',
-        'O(2^n)',
-        'O(n log n)'
-      ],
-      respostaCorreta: 2
-    },
-    { 
-      nivel: 3,
-      pergunta: 'Como otimizar a função de Fibonacci usando recursão?',
-      tipo: 'recursividade',
-      opcoes: [
-        'Usando memoization.',
-        'Convertendo a função para um loop.',
-        'Eliminando o caso base.',
-        'Usando uma abordagem assíncrona.'
-      ],
-      respostaCorreta: 0
+        '4', 
+        '8', 
+        '12', 
+        '16'
+      ], 
+      respostaCorreta: 2 
     },
     {
         nivel: 1,
