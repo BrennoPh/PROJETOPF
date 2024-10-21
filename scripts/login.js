@@ -39,7 +39,6 @@ const loginComGoogle = () => {
         // Usuário logado com sucesso
         const user = result.user;
         console.log("Usuário autenticado:", user);
-        window.location.href = "./index.html"; // Redireciona para a página principal
       })
       .catch((error) => {
         // Tratar erros
