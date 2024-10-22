@@ -1,4 +1,4 @@
-import { atualizarPontuacao, getUserId} from './pontuacao.js';
+import { atualizarPontuacao,atualizarPontuacaoQuiz, getUserId} from './pontuacao.js';
 import {perguntas} from './perguntas.js';
 import { finalizarQuiz } from './painel.js';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
@@ -118,6 +118,8 @@ const exibirPergunta = (indice) => {
   // Verifica se há perguntas disponíveis para exibir
   if (indice >= 20 || indice >= perguntasFiltradas.length) {
     console.log("Nenhuma pergunta disponível para o tipo e nível atual.");
+    atualizarPontuacao(nivelAtual);
+    atualizarPontuacaoQuiz(tipo, pontuacao.total)
     const quizFinalizado =  document.getElementById('pergunta').innerHTML = `Quiz finalizado! Sua pontuação neste quiz é: ${pontuacao.total}`; 
     const opcoesVazia = document.getElementById('opcoes').innerHTML = ''; // Limpa as opções
     finalizarQuiz(tipo, pontuacao.total);
@@ -166,7 +168,6 @@ const renderizarOpcoes = (perguntaAtual, perguntaIndice, historicoRespostas, niv
         if (resposta) {
           alert('Resposta correta!');
           console.log(`Atualizando pontuação para o nível: ${nivelAtual}`);
-          atualizarPontuacao(nivelAtual);
           const pontosPorNivel = { 1: 1, 2: 2, 3: 3 };
           const pontos = pontosPorNivel[nivelAtual] || 0;
           pontuacao.total += pontos; // Atualiza a pontuação total

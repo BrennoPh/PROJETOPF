@@ -49,22 +49,22 @@ const salvarProgresso = async (tipoQuiz, pontuacao) => {
     // Atualiza o progresso do usuário de acordo com o tipo de quiz
     switch (tipoQuiz) {
         case 'pureza':
-            progressoUsuario.funcoesPuras = pontuacao;
+            progressoUsuario.pureza = pontuacao;
             break;
         case 'imutabilidade':
             progressoUsuario.imutabilidade = pontuacao;
             break;
         case 'altaOrdem':
-            progressoUsuario.funcoesAltaOrdem = pontuacao;
+            progressoUsuario.altaOrdem = pontuacao;
             break;
         case 'recursividade':
-            progressoUsuario.recursao = pontuacao;
+            progressoUsuario.recursividade = pontuacao;
             break;
         case 'currying':
             progressoUsuario.currying = pontuacao;
             break;
         case 'compFuncoes':
-            progressoUsuario.composicaoFuncoes = pontuacao;
+            progressoUsuario.compFuncao = pontuacao;
             break;
         default:
             console.error('Tipo de quiz não reconhecido:', tipoQuiz);

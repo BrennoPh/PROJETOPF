@@ -93,4 +93,36 @@ const exibirPontuacao = async () => {
 };
 
 
-export { atualizarPontuacao, getUserId, exibirPontuacao};
+const atualizarPontuacaoQuiz = async (tipoQuiz, pontuacaoAtualQuiz) => {
+    const userId = await getUserId();
+    if (!userId) {
+        console.error("Usuário não identificado.");
+        return;
+    }
+  
+    // Verifica se o documento do usuário já existe no Firestore
+    const docRef = doc(db, 'usuarios', userId);
+    const docSnap = await getDoc(docRef);
+  
+    if (docSnap.exists()) {
+        const progressoUsuario = docSnap.data().progresso || {}; // Obtém o progresso existente ou cria um objeto vazio
+  
+        // Atualiza o progresso apenas para o quiz específico (substituindo a pontuação anterior)
+        progressoUsuario[tipoQuiz] = pontuacaoAtualQuiz;
+  
+        // Salva o progresso atualizado no Firestore
+        await setDoc(docRef, { progresso: progressoUsuario }, { merge: true });
+        console.log(`Pontuação atualizada para o quiz ${tipoQuiz}: ${pontuacaoAtualQuiz}`);
+    } else {
+        // Se o documento do usuário não existir, cria um novo com a pontuação inicial
+        const progressoUsuario = { [tipoQuiz]: pontuacaoAtualQuiz };
+        await setDoc(docRef, { progresso: progressoUsuario });
+        console.log(`Documento criado com pontuação para o quiz ${tipoQuiz}: ${pontuacaoAtualQuiz}`);
+    }
+    
+    // Exibe a pontuação ou chama outras funções relacionadas após a atualização
+    await exibirPontuacao();
+  };
+
+
+export { atualizarPontuacao,atualizarPontuacaoQuiz, getUserId, exibirPontuacao};
