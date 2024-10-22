@@ -1,5 +1,5 @@
 import { getFirestore, doc, setDoc, getDoc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
-import { getUserId } from './pontuacao.js'; // Supondo que você tenha uma função para pegar o ID do usuário
+import { getUserId, exibirPontuacao } from './pontuacao.js'; // Supondo que você tenha uma função para pegar o ID do usuário
 import { getAuth } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
 
 const auth = getAuth();
@@ -46,44 +46,59 @@ const progressoUsuario = {
 };
 
 const salvarProgresso = async (tipoQuiz, pontuacao) => {
-    // Atualiza o progresso do usuário de acordo com o tipo de quiz
-    switch (tipoQuiz) {
-        case 'pureza':
-            progressoUsuario.pureza = pontuacao;
-            break;
-        case 'imutabilidade':
-            progressoUsuario.imutabilidade = pontuacao;
-            break;
-        case 'altaOrdem':
-            progressoUsuario.altaOrdem = pontuacao;
-            break;
-        case 'recursividade':
-            progressoUsuario.recursividade = pontuacao;
-            break;
-        case 'currying':
-            progressoUsuario.currying = pontuacao;
-            break;
-        case 'compFuncoes':
-            progressoUsuario.compFuncao = pontuacao;
-            break;
-        default:
-            console.error('Tipo de quiz não reconhecido:', tipoQuiz);
-            return;
-    }
-
     const userId = await getUserId(); // Aguarda a resolução da Promise
     if (!userId || typeof userId !== 'string') {
         console.error("ID do usuário não encontrado ou inválido:", userId);
         return;
     }
 
+    const usuarioRef = doc(db, 'usuarios', userId);
+    const usuarioDoc = await getDoc(usuarioRef);
+    let progressoAtual = {
+        pureza: 0,
+        imutabilidade: 0,
+        altaOrdem: 0,
+        recursividade: 0,
+        currying: 0,
+        compFuncao: 0,
+    };
+
+    if (usuarioDoc.exists()) {
+        progressoAtual = usuarioDoc.data().progresso || progressoAtual;
+    }
+
+    // Atualiza a pontuação do tipo de quiz correspondente
+    switch (tipoQuiz) {
+        case 'pureza':
+            progressoAtual.pureza = pontuacao;
+            break;
+        case 'imutabilidade':
+            progressoAtual.imutabilidade = pontuacao;
+            break;
+        case 'altaOrdem':
+            progressoAtual.altaOrdem = pontuacao;
+            break;
+        case 'recursividade':
+            progressoAtual.recursividade = pontuacao;
+            break;
+        case 'currying':
+            progressoAtual.currying = pontuacao;
+            break;
+        case 'compFuncoes':
+            progressoAtual.compFuncao = pontuacao;
+            break;
+        default:
+            console.error('Tipo de quiz não reconhecido:', tipoQuiz);
+            return;
+    }
+
     try {
-        // Salva o progresso no Firestore
-        await setDoc(doc(db, 'usuarios', userId), {
-            progresso: progressoUsuario
+        // Salva o progresso no Firestore com merge
+        await setDoc(usuarioRef, {
+            progresso: progressoAtual
         }, { merge: true });
 
-        console.log('Progresso salvo com sucesso:', progressoUsuario);
+        console.log('Progresso salvo com sucesso:', progressoAtual);
     } catch (error) {
         console.error("Erro ao salvar progresso:", error);
     }
@@ -253,6 +268,7 @@ const exibirProgressoGrafico = async () => {
 // Chama a função ao carregar a página
 window.onload = () => {
     exibirProgressoGrafico();
+    exibirPontuacao()
 };
 
 

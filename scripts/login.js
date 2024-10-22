@@ -1,7 +1,5 @@
-// login.js
-
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
 import { getFirestore, doc, setDoc, getDoc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
 
 const firebaseConfig = {
@@ -17,37 +15,30 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-// Inicialize o provedor do Google
 const provider = new GoogleAuthProvider();
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
-      // Usuário está autenticado
-      console.log("Usuário autenticado:", user);
-      // Aqui você pode redirecionar o usuário ou mostrar informações
+        console.log("Usuário autenticado:", user);
     } else {
-      // Usuário não está autenticado
-      console.log("Usuário não autenticado");
+        console.log("Usuário não autenticado");
     }
-  });
-  
+});
 
 // Função para fazer login com Google
 const loginComGoogle = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        // Usuário logado com sucesso
         const user = result.user;
         console.log("Usuário autenticado:", user);
       })
       .catch((error) => {
-        // Tratar erros
         console.error("Erro no login com o Google:", error.message);
       });
-  };
-  
-  // Exemplo de botão de login
-  document.getElementById('login-google').addEventListener('click', loginComGoogle);
+};
+
+// Exemplo de botão de login
+document.getElementById('login-google').addEventListener('click', loginComGoogle);
 
 // Login usuário
 const loginUsuario = async (email, senha) => {
@@ -55,13 +46,11 @@ const loginUsuario = async (email, senha) => {
         const usuario = await signInWithEmailAndPassword(auth, email, senha);
         console.log("Usuário logado:", usuario);
 
-        // Verifica se o e-mail foi verificado
         if (usuario.user.emailVerified) {
             console.log("E-mail verificado.");
             alert("Login realizado com sucesso!");
             window.location.href = "./index.html"; // Redireciona para a página principal
         } else {
-            // Se o e-mail não estiver verificado, desloga o usuário e pede para verificar o e-mail
             await auth.signOut();
             alert("Por favor, verifique seu e-mail antes de fazer login.");
         }
@@ -74,12 +63,33 @@ const loginUsuario = async (email, senha) => {
 // Evento de submissão do formulário de login
 const loginForm = document.getElementById('loginForm');
 loginForm.addEventListener('submit', (e) => {
-    e.preventDefault(); // Evita o envio do formulário padrão
+    e.preventDefault();
     const email = document.getElementById('email').value;
     const senha = document.getElementById('senha').value;
     loginUsuario(email, senha);
 });
 
+// Função para enviar e-mail de redefinição de senha
+const enviarEmailRedefinicaoSenha = async (email) => {
+    try {
+        await sendPasswordResetEmail(auth, email);
+        alert("E-mail de redefinição de senha enviado! Verifique sua caixa de entrada.");
+    } catch (error) {
+        console.error("Erro ao enviar e-mail de redefinição de senha:", error);
+        alert("Erro ao enviar e-mail: " + error.message);
+    }
+};
+
+// Adiciona evento ao botão "Esqueci minha senha"
+const btnEsqueciSenha = document.getElementById('esqueci-senha');
+btnEsqueciSenha.addEventListener('click', () => {
+    const email = prompt("Por favor, insira seu e-mail:");
+    if (email) {
+        enviarEmailRedefinicaoSenha(email);
+    }
+});
+
+// Função para armazenar dados do usuário
 const armazenarDadosUsuario = async (usuarioId, dados) => {
     try {
         await setDoc(doc(db, "usuarios", usuarioId), dados);
@@ -89,6 +99,7 @@ const armazenarDadosUsuario = async (usuarioId, dados) => {
     }
 };
 
+// Função para recuperar dados do usuário
 const recuperarDadosUsuario = async (usuarioId) => {
     try {
         const docRef = doc(db, "usuarios", usuarioId);
@@ -103,4 +114,3 @@ const recuperarDadosUsuario = async (usuarioId) => {
         console.error("Erro ao recuperar dados:", error);
     }
 };
-

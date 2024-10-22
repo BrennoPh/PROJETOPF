@@ -118,7 +118,7 @@ const exibirPergunta = (indice) => {
   // Verifica se há perguntas disponíveis para exibir
   if (indice >= 20 || indice >= perguntasFiltradas.length) {
     console.log("Nenhuma pergunta disponível para o tipo e nível atual.");
-    atualizarPontuacao(nivelAtual);
+    atualizarPontuacao(tipo, pontuacao.total);
     atualizarPontuacaoQuiz(tipo, pontuacao.total)
     const quizFinalizado =  document.getElementById('pergunta').innerHTML = `Quiz finalizado! Sua pontuação neste quiz é: ${pontuacao.total}`; 
     const opcoesVazia = document.getElementById('opcoes').innerHTML = ''; // Limpa as opções

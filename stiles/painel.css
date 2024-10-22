@@ -15,6 +15,7 @@
     margin: 0;
     padding: 0;
     background-color: var(--cor-primaria);
+    font-family: var(--fonte-primaria);
 }
 
 header {
@@ -70,6 +71,29 @@ nav a:hover {
 body {
   color: var(--cor-secundaria);
 }
+#ranking {
+  padding: 50px;
+}
+
+#rankingTabela {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#rankingTabela th, #rankingTabela td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+#rankingTabela th {
+  background-color: var(--cor-primaria);
+}
+
+#ranking {
+  margin-top: 40px;
+}
 
 .titulo {
   font-family: var(--fonte-primaria);
@@ -119,4 +143,19 @@ padding: 40px;
 canvas {
   display: block;
   margin: 0;
+}
+
+footer {
+  text-align: center;
+  padding: 20px 0 20px 0;
+  background-color: var(--cor-terciaria);
+  color: var(--cor-secundaria);
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  font-family: var(--fonte-secundaria);
+}
+
+footer p {
+  background-color: var(--cor-terciaria);
 }
