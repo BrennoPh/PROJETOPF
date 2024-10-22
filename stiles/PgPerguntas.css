@@ -78,13 +78,19 @@ nav a:hover {
   
 
 main {
+    align-self: center;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
     flex-wrap: wrap;
     gap: 20px;
-    padding: 20px;
-    flex: 1;
+    padding: 50px;
+    width: 70%;
+}
+
+.linha {
+    display: flex;
+    justify-content: space-between;
 }
 
 .quiz-card {
@@ -92,7 +98,7 @@ main {
     border-radius: 10px;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
     width: 250px;
-    padding: 20px;
+    padding: 30px;
     text-align: center;
     transition: transform 0.3s ease;
 }

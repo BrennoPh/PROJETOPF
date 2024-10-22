@@ -21,78 +21,12 @@
   </nav>
 </header>
 <body>
-    <h2 class="titulo">Seu Progresso em Programação Funcional</h2>
-    <div class="progress-container">
-        <!-- Gráfico de Barras -->
-        <div class="chart-wrapper">
-            <h3>Progresso por Tópico (Barras)</h3>
-            <canvas id="progressoBarrasChart" width="400" height="200"></canvas>
-        </div>
-
-        <!-- Gráfico de Pizza -->
-        <div class="chart-wrapper">
-            <h3>Progresso por Tópico (Pizza)</h3>
-            <canvas id="progressoPizzaChart" width="400" height="400"></canvas>
-        </div>
+    <h1>Painel de Progresso do Usuário</h1>
+    <div id="pontuacao"></div>
+    <div class="graficos">
+    <canvas id="progressoPizza" ></canvas>
+    <canvas id="progressoBarra" ></canvas> <!-- Adicione um canvas para o gráfico -->
     </div>
-
-    <script>
-        // Gráfico de Barras
-        const ctxBarras = document.getElementById('progressoBarrasChart').getContext('2d');
-        const barrasChart = new Chart(ctxBarras, {
-            type: 'bar',
-            data: {
-                labels: ['Funções Puras', 'Imutabilidade', 'Funções de Alta Ordem', 'Recursão', 'Currying', 'Composição de Funções'],
-                datasets: [{
-                    label: 'Progresso (%)',
-                    data: [80, 60, 75, 40, 50, 70], // Progresso fictício (em %)
-                    backgroundColor: [
-                        '#4CAF50', '#FFC107', '#2196F3', '#FF5722', '#9C27B0', '#00BCD4'
-                    ]
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100 // Progresso máximo de 100%
-                    }
-                },
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                }
-            }
-        });
-
-        // Gráfico de Pizza
-        const ctxPizza = document.getElementById('progressoPizzaChart').getContext('2d');
-        const pizzaChart = new Chart(ctxPizza, {
-            type: 'pie',
-            data: {
-                labels: ['Funções Puras', 'Imutabilidade', 'Funções de Alta Ordem', 'Recursão', 'Currying', 'Composição de Funções'],
-                datasets: [{
-                    data: [80, 60, 75, 40, 50, 70], // Progresso fictício (em %)
-                    backgroundColor: [
-                        '#4CAF50', '#FFC107', '#2196F3', '#FF5722', '#9C27B0', '#00BCD4'
-                    ]
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'bottom'
-                    }
-                }
-            }
-        });
-    </script>
-        <script type="module" src="scripts/logout.js"></script>
-        <script type="module" src="scripts/verificaLogin.js"></script> 
+    <script type="module" src="scripts/painel.js"></script>
 </body>
 </html>
-
-

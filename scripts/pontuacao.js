@@ -16,15 +16,10 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Função para gerar e retornar o userId do usuário
+
 const getUserId = async () => {
-    const user = auth.currentUser;
-    if (user) {
-        return user.uid; // Retorna o userId se o usuário estiver autenticado
-    } else {
-        console.error('Usuário não autenticado');
-        return null;
-    }
+    const user = auth.currentUser; // Obtém o usuário atual
+    return user ? user.uid : null; // Retorna o ID ou null
 };
 
 // Listener para monitorar o estado de autenticação

@@ -104,8 +104,19 @@ body {
   vertical-align: top;
 }
 
+.graficos{
+  display: flex;
+  justify-content: space-between;
+height: 400px;
+padding: 40px;
+}
+
+#progressoPizza, #progressoBarra {
+  width: 10px; /* Largura desejada */
+  height: 10px; /* Altura desejada */
+}
 
 canvas {
   display: block;
-  margin: 0 auto;
+  margin: 0;
 }
